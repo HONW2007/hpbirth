@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./happy.css">
+    <title>Xe tải chạy</title>
+</head>
+<style>
+    /* CSS */
+    .back-to-home {
+        position: fixed; /* Cố định vị trí */
+        top: 20px; /* Cách đỉnh 20px */
+        left: 20px; /* Cách trái 20px */
+        background-color: #4CAF50; /* Màu nền xanh */
+        color: white; /* Màu chữ trắng */
+        padding: 10px 20px; /* Đệm bên trong */
+        border-radius: 5px; /* Bo góc */
+        text-decoration: none; /* Bỏ gạch chân */
+        font-family: Arial, sans-serif; /* Font chữ */
+        transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+        z-index: 1000; /* Đảm bảo nút luôn nằm trên cùng */
+    }
+
+    .back-to-home:hover {
+        background-color: #45a049; /* Màu khi hover */
+        cursor: pointer; /* Con trỏ chuột */
+    }
+</style>
+<body>
+    <div class="truck-container">
+        <div class="container">
+            <div class="ts">
+                <div class="box"></div>
+                <div class="front">
+                    <div class="light"></div>
+                    <div class="trapezoid"></div>
+                    <div class="pipe"></div>
+                    <div class="pipe2"></div>
+                    <div class="front1"></div>
+                    <div class="front2"></div>
+                    <div class="window"></div>
+                    <div class="hood"></div>    
+                </div>
+                <div class="tyre1">
+                    <div class="r1"></div>
+                    <div class="r2"></div>
+                    <div class="r3"></div>
+                    <div class="r4"></div>
+                </div>
+                <div class="tyre2">
+                    <div class="r1"></div>
+                    <div class="r2"></div>
+                    <div class="r3"></div>
+                    <div class="r4"></div>
+                </div>
+                <div class="tyre3">
+                    <div class="r1"></div>
+                    <div class="r2"></div>
+                    <div class="r3"></div>
+                    <div class="r4"></div>
+                </div>
+                <div class="tyre4">
+                    <div class="r1"></div>
+                    <div class="r2"></div>
+                    <div class="r3"></div>
+                    <div class="r4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Chuyển trang sau khi xe chạy xong (10 giây)
+        setTimeout(() => {
+            window.location.href = "mk.html";
+        }, 10000);
+    </script>
+    <a href="index.html" class="back-to-home">Quay về Trang Chủ</a>
+
+    <!-- JavaScript (tùy chọn) -->
+    <script>
+        // Thêm hiệu ứng click (nếu muốn)
+        document.querySelector('.back-to-home').addEventListener('click', function(e) {
+            e.preventDefault(); // Ngăn hành vi mặc định (tùy chọn)
+            window.location.href = 'index.html'; // Chuyển hướng về trang chủ
+        });
+    </script>
+</body>
+</html>

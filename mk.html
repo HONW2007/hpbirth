@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Links</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdfdfd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px; 
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #555;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        #passwordDisplay {
+            font-size: 30px;
+            font-weight: bold;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            background-color: #f8f8f8;
+            border-radius: 12px;
+            width: 100%;
+            text-align: center;
+            color: #333;
+            letter-spacing: 8px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .number-pad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .number-btn {
+            padding: 18px;
+            font-size: 20px;
+            background-color: #4e73df;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .number-btn:hover {
+            background-color: #365dbf;
+            transform: translateY(-3px);
+        }
+
+        #number0 {
+            grid-column: span 2; /* Nút 0 chiếm 2 cột */
+        }
+
+        .button-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        #clearBtn, #submitBtn {
+            padding: 18px;
+            font-size: 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #clearBtn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        #clearBtn:hover {
+            background-color: #cc3333;
+            transform: translateY(-3px);
+        }
+
+        #submitBtn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #submitBtn:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+        }
+
+        .error {
+            color: #ff4d4d;
+            display: none;
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .links {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 18px;
+            text-decoration: none;
+            background-color: #5bc0de;
+            color: white;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .links a:hover {
+            background-color: #31b0d5;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 15px;
+            }
+
+            #passwordDisplay {
+                font-size: 26px;
+                padding: 12px;
+                letter-spacing: 6px;
+            }
+
+            .number-btn {
+                padding: 16px;
+                font-size: 18px;
+            }
+
+            #submitBtn {
+                font-size: 18px;
+            }
+
+            .links a {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+    <style>
+        /* CSS */
+        .back-to-home {
+            position: fixed; /* Cố định vị trí */
+            top: 20px; /* Cách đỉnh 20px */
+            left: 20px; /* Cách trái 20px */
+            background-color: #4CAF50; /* Màu nền xanh */
+            color: white; /* Màu chữ trắng */
+            padding: 10px 20px; /* Đệm bên trong */
+            border-radius: 5px; /* Bo góc */
+            text-decoration: none; /* Bỏ gạch chân */
+            font-family: Arial, sans-serif; /* Font chữ */
+            transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+            z-index: 1000; /* Đảm bảo nút luôn nằm trên cùng */
+        }
+
+        .back-to-home:hover {
+            background-color: #45a049; /* Màu khi hover */
+            cursor: pointer; /* Con trỏ chuột */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Nhập mật khẩu</h2>
+        <div id="passwordDisplay">****</div>
+        <div class="number-pad">
+            <button class="number-btn" onclick="addNumber('1')">1</button>
+            <button class="number-btn" onclick="addNumber('2')">2</button>
+            <button class="number-btn" onclick="addNumber('3')">3</button>
+            <button class="number-btn" onclick="addNumber('4')">4</button>
+            <button class="number-btn" onclick="addNumber('5')">5</button>
+            <button class="number-btn" onclick="addNumber('6')">6</button>
+            <button class="number-btn" onclick="addNumber('7')">7</button>
+            <button class="number-btn" onclick="addNumber('8')">8</button>
+            <button class="number-btn" onclick="addNumber('9')">9</button>
+            <button class="number-btn" id="number0" onclick="addNumber('0')">0</button>
+        </div>
+        <div class="button-row">
+            <button id="clearBtn" onclick="clearPassword()">Xóa</button>
+            <button id="submitBtn" onclick="checkPassword()">Xác nhận</button>
+        </div>
+        <p class="error" id="errorMessage">Mật khẩu sai!</p>
+        <div class="links" id="linkContainer">
+            <a href="sinhnhat.html" target="_blank">Lời chúc</a>
+            <a href="ngaysinh.html" target="_blank">Ngày sinh</a>
+            <a href="trochoi.html" target="_blank">mini game</a>
+            <a href="hoa.html" target="_blank">Đặc biệt</a>
+        </div>
+    </div>
+
+    <script>
+        const correctPassword = "23042007"; // Mật khẩu đúng
+        let currentPassword = "";
+
+        function addNumber(number) {
+            currentPassword += number;
+            updateDisplay();
+        }
+
+        function clearPassword() {
+            currentPassword = "";
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const display = document.getElementById("passwordDisplay");
+            display.textContent = "*".repeat(currentPassword.length); // Hiển thị dấu * để ẩn mật khẩu
+        }
+
+        function checkPassword() {
+            const errorMessage = document.getElementById("errorMessage");
+            const linkContainer = document.getElementById("linkContainer");
+
+            if (currentPassword === correctPassword) {
+                errorMessage.style.display = "none"; // Ẩn thông báo lỗi
+                linkContainer.style.display = "block"; // Hiển thị các liên kết
+            } else {
+                errorMessage.style.display = "block"; // Hiển thị thông báo lỗi
+                linkContainer.style.display = "none"; // Ẩn các liên kết
+                currentPassword = ""; // Xóa mật khẩu hiện tại
+                updateDisplay();
+            }
+        }
+    </script>
+    <a href="happy.html" class="back-to-home">Quay về Trang Chủ</a>
+
+    <!-- JavaScript (tùy chọn) -->
+    <script>
+        // Thêm hiệu ứng click (nếu muốn)
+        document.querySelector('.back-to-home').addEventListener('click', function(e) {
+            e.preventDefault(); // Ngăn hành vi mặc định (tùy chọn)
+            window.location.href = 'happy.html'; // Chuyển hướng về trang chủ
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa;
+}
+
+/* Container bao quanh nút */
+.container {
+    text-align: center;
+}
+
+/* Thiết kế nút */
+.cute-button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff69b4; /* Màu hồng dễ thương */
+    border-radius: 30px; /* Góc bo tròn */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hiệu ứng hover */
+.cute-button:hover {
+    background-color: #ff1493; /* Màu hồng đậm khi hover */
+    transform: translateY(-5px); /* Đẩy nút lên khi hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Tăng bóng đổ khi hover */
+}
+
+/* Hiệu ứng khi nhấn */
+.cute-button:active {
+    transform: translateY(2px); /* Khi nhấn, nút hơi dẹt xuống */
+}
