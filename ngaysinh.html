@@ -1,30 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đếm Ngày Từ Sinh Nhật - Ultra VIP Pro</title>
-    <style>
-        /* CSS */
-        .back-to-home {
-            position: fixed; /* Cố định vị trí */
-            top: 20px; /* Cách đỉnh 20px */
-            left: 20px; /* Cách trái 20px */
-            background-color: #4CAF50; /* Màu nền xanh */
-            color: white; /* Màu chữ trắng */
-            padding: 10px 20px; /* Đệm bên trong */
-            border-radius: 5px; /* Bo góc */
-            text-decoration: none; /* Bỏ gạch chân */
-            font-family: Arial, sans-serif; /* Font chữ */
-            transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
-            z-index: 1000; /* Đảm bảo nút luôn nằm trên cùng */
-        }
-
-        .back-to-home:hover {
-            background-color: #45a049; /* Màu khi hover */
-            cursor: pointer; /* Con trỏ chuột */
-        }
-    </style>
+    <title>Đồng Hồ & Đếm Ngày - Ultra Luxury</title>
     <style>
         * {
             margin: 0;
@@ -35,15 +14,15 @@
         body {
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
-            overflow: hidden;
-            color: #fff;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background: linear-gradient(-45deg, #1a1a1a, #2b2b2b, #3c2f2f);
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            animation: gradientBG 20s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
             position: relative;
+            color: #fff;
         }
 
         @keyframes gradientBG {
@@ -63,148 +42,143 @@
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
             padding: 40px;
             border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.2);
-            max-width: 650px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(212, 175, 55, 0.2);
+            max-width: 1000px;
             width: 90%;
             z-index: 1;
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(212, 175, 55, 0.5);
             transition: transform 0.3s ease;
         }
 
         .container:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            transform: translateY(-10px);
+        }
+
+        /* Đồng hồ */
+        .clock {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #2b2b2b, #1f1f1f);
+            border-radius: 50%;
+            border: 12px solid #d4af37;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(212, 175, 55, 0.4);
+            margin-right: 40px;
+        }
+
+        .clock-face {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .number {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+            font-size: 28px;
+            color: #d4af37;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+        }
+
+        .number div {
+            position: absolute;
+            width: 100%;
+            top: 30px;
+        }
+
+        .decor-ring {
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            animation: rotateRing 15s linear infinite;
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            border-radius: 2px;
+            transition: transform 0.1s linear; /* Thêm transition để kim chuyển động mượt hơn */
+        }
+
+        .hour-hand {
+            width: 5px;
+            height: 100px;
+            background: linear-gradient(to top, #d4af37, #f0e68c);
+            animation: glow 2s infinite alternate;
+        }
+
+        .minute-hand {
+            width: 4px;
+            height: 140px;
+            background: linear-gradient(to top, #d4af37, #f0e68c);
+            animation: glow 2s infinite alternate;
+        }
+
+        .second-hand {
+            width: 2px;
+            height: 160px;
+            background: linear-gradient(to top, #ff4040, #ff6666);
+            animation: glow-red 1.5s infinite alternate;
+            transition: transform 1s linear; /* Kim giây chuyển động mượt mà hơn */
+        }
+
+        .center {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(circle, #f0e68c, #d4af37);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.9);
+            animation: glow 2s infinite alternate;
+        }
+
+        /* Đếm ngày */
+        .countdown-section {
+            flex: 1;
+            text-align: center;
         }
 
         h1 {
-            font-size: 42px;
-            margin-bottom: 25px;
-            color: #fff;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffd700;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px #ff6f61, 0 0 60px #23d5ab;
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.7);
             animation: neonGlow 1.5s infinite alternate;
         }
 
         .countdown {
-            font-size: 28px;
-            margin-bottom: 25px;
+            font-size: 24px;
+            margin-bottom: 20px;
             font-weight: 600;
             color: #fff;
-            padding: 20px;
+            padding: 15px;
             border-radius: 15px;
-            background: linear-gradient(135deg, rgba(255, 111, 97, 0.4), rgba(35, 213, 171, 0.4));
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2), 0 0 30px rgba(255, 111, 97, 0.5);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(255, 64, 64, 0.4));
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             animation: pulse 1.5s infinite;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .countdown::before {
-            content: "⏳ ";
-            font-size: 32px;
-            margin-right: 10px;
-            animation: spin 2s infinite linear;
-        }
-
-        .date-time {
-            font-size: 20px;
-            margin: 20px 0;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-        }
-
-        .events {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .events h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-        }
-
-        .events ul {
-            list-style: none;
-        }
-
-        .events li {
-            font-size: 18px;
-            padding: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .events li::before {
-            content: "🎉 ";
-            margin-right: 10px;
-            font-size: 20px;
-        }
-
-        .events li:last-child {
-            border-bottom: none;
-        }
-
-        .events li:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(15px) scale(1.02);
-        }
-
-        .events li.today-event {
-            color: #ff6f61;
-            font-weight: bold;
-            text-shadow: 0 0 15px rgba(255, 111, 97, 0.9);
-        }
-
-        .sound-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            border-radius: 10px;
-            color: #fff;
-            cursor: pointer;
-            z-index: 2;
-            transition: all 0.3s ease;
-        }
-
-        .sound-toggle:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(1.1);
-        }
-
-        /* Hiệu ứng động */
-        @keyframes neonGlow {
-            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px #ff6f61, 0 0 40px #23d5ab; }
-            100% { text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 40px #ff6f61, 0 0 60px #23d5ab; }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
         }
 
         .countdown span {
@@ -213,22 +187,208 @@
             overflow: hidden;
             animation: typing 2s steps(40, end) 1;
         }
+
+        .date-time {
+            font-size: 18px;
+            margin: 15px 0;
+            color: #d4af37;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+        }
+
+        .events {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .events h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        .events ul {
+            list-style: none;
+        }
+
+        .events li {
+            font-size: 16px;
+            padding: 10px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .events li::before {
+            content: "✨ ";
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .events li:last-child {
+            border-bottom: none;
+        }
+
+        .events li:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateX(10px);
+        }
+
+        .events li.today-event {
+            color: #ff4040;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 64, 64, 0.9);
+        }
+
+        /* Nút quay về */
+        .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            color: #1a1a1a;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-home:hover {
+            background: linear-gradient(135deg, #ffd700, #d4af37);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 1);
+        }
+
+        /* Nút âm thanh */
+        .sound-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #d4af37, #ffd700);
+            border: none;
+            border-radius: 10px;
+            color: #1a1a1a;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .sound-toggle:hover {
+            background: linear-gradient(135deg, #ffd700, #d4af37);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 1);
+        }
+
+        /* Hiệu ứng animation */
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.7); }
+            100% { box-shadow: 0 0 20px rgba(212, 175, 55, 1); }
+        }
+
+        @keyframes glow-red {
+            0% { box-shadow: 0 0 8px rgba(255, 64, 64, 0.6); }
+            100% { box-shadow: 0 0 15px rgba(255, 64, 64, 0.9); }
+        }
+
+        @keyframes neonGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.7); }
+            100% { text-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 40px rgba(212, 175, 55, 0.9); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes rotateRing {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        /* Định vị số La Mã */
+        .number12 { transform: rotate(0deg); }
+        .number12 div { transform: rotate(0deg); }
+        .number1 { transform: rotate(30deg); }
+        .number1 div { transform: rotate(-30deg); }
+        .number2 { transform: rotate(60deg); }
+        .number2 div { transform: rotate(-60deg); }
+        .number3 { transform: rotate(90deg); }
+        .number3 div { transform: rotate(-90deg); }
+        .number4 { transform: rotate(120deg); }
+        .number4 div { transform: rotate(-120deg); }
+        .number5 { transform: rotate(150deg); }
+        .number5 div { transform: rotate(-150deg); }
+        .number6 { transform: rotate(180deg); }
+        .number6 div { transform: rotate(-180deg); }
+        .number7 { transform: rotate(210deg); }
+        .number7 div { transform: rotate(-210deg); }
+        .number8 { transform: rotate(240deg); }
+        .number8 div { transform: rotate(-240deg); }
+        .number9 { transform: rotate(270deg); }
+        .number9 div { transform: rotate(-270deg); }
+        .number10 { transform: rotate(300deg); }
+        .number10 div { transform: rotate(-300deg); }
+        .number11 { transform: rotate(330deg); }
+        .number11 div { transform: rotate(-330deg); }
     </style>
 </head>
 <body>
     <div class="particles" id="particles"></div>
     <div class="container">
-        <h1>Đếm Ngày Từ Sinh Nhật</h1>
-        <div class="countdown" id="countdown"><span></span></div>
-        <div class="date-time" id="currentDateTime"></div>
-        <div class="events">
-            <h3>Sự Kiện Quan Trọng Của Việt Nam</h3>
-            <ul id="eventsList"></ul>
+        <!-- Đồng hồ -->
+        <div class="clock">
+            <div class="clock-face">
+                <div class="decor-ring"></div>
+                <div class="number number12"><div>XII</div></div>
+                <div class="number number1"><div>I</div></div>
+                <div class="number number2"><div>II</div></div>
+                <div class="number number3"><div>III</div></div>
+                <div class="number number4"><div>IV</div></div>
+                <div class="number number5"><div>V</div></div>
+                <div class="number number6"><div>VI</div></div>
+                <div class="number number7"><div>VII</div></div>
+                <div class="number number8"><div>VIII</div></div>
+                <div class="number number9"><div>IX</div></div>
+                <div class="number number10"><div>X</div></div>
+                <div class="number number11"><div>XI</div></div>
+                <div class="hand hour-hand"></div>
+                <div class="hand minute-hand"></div>
+                <div class="hand second-hand"></div>
+                <div class="center"></div>
+            </div>
+        </div>
+
+        <!-- Đếm ngày -->
+        <div class="countdown-section">
+            <h1>Đếm Ngày Từ Sinh Nhật</h1>
+            <div class="countdown" id="countdown"><span></span></div>
+            <div class="date-time" id="currentDateTime"></div>
+            <div class="events">
+                <h3>Sự Kiện Đặc Biệt</h3>
+                <ul id="eventsList"></ul>
+            </div>
         </div>
     </div>
+
+    <a href="mk.html" class="back-to-home">Quay về Trang Chủ</a>
     <button class="sound-toggle" id="soundToggle">🔊 Bật Âm Thanh</button>
 
-    <!-- Thay đổi nguồn nhạc thành Happy Birthday -->
     <audio id="backgroundMusic" loop>
         <source src="void/nhac.mp3" type="audio/mp3">
         Your browser does not support the audio element.
@@ -236,23 +396,52 @@
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        const birthday = new Date("2007-04-23"); // Ngày cố định
+        // Đồng hồ
+        const hourHand = document.querySelector('.hour-hand');
+        const minuteHand = document.querySelector('.minute-hand');
+        const secondHand = document.querySelector('.second-hand');
+
+        function setClock() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+            const hours = now.getHours();
+
+            const secondsDegrees = (seconds / 60) * 360 + 90;
+            const minutesDegrees = (minutes / 60) * 360 + (seconds / 60) * 6 + 90;
+            const hoursDegrees = (hours / 12) * 360 + (minutes / 60) * 30 + 90;
+
+            // Cập nhật góc quay của các kim
+            secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+            minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+            hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+            // Loại bỏ transition khi kim giây quay từ 360 về 0 để không bị giật
+            if (seconds === 0) {
+                secondHand.style.transition = 'none';
+                setTimeout(() => {
+                    secondHand.style.transition = 'transform 1s linear';
+                }, 50);
+            }
+        }
+
+        // Đếm ngày
+        const birthday = new Date("2007-04-23");
         let today = new Date();
 
-        // Tải particles.js
         particlesJS("particles", {
             particles: {
-                number: { value: 120, density: { enable: true, value_area: 800 } },
-                color: { value: ["#ff6f61", "#23d5ab", "#e73c7e", "#fff", "#ffd700"] },
-                shape: { type: ["circle", "star", "triangle"] },
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: ["#d4af37", "#ffd700", "#ff4040"] },
+                shape: { type: ["circle", "star"] },
                 opacity: { value: 0.7, random: true },
-                size: { value: 5, random: true },
-                move: { enable: true, speed: 4, direction: "none", random: true, out_mode: "bounce" }
+                size: { value: 4, random: true },
+                move: { enable: true, speed: 3, direction: "none", random: true, out_mode: "bounce" }
             },
             interactivity: {
                 detect_on: "canvas",
                 events: { onhover: { enable: true, mode: "bubble" }, onclick: { enable: true, mode: "push" } },
-                modes: { bubble: { distance: 200, size: 8, duration: 2, opacity: 0.8 } }
+                modes: { bubble: { distance: 200, size: 6, duration: 2, opacity: 0.8 } }
             }
         });
 
@@ -264,7 +453,7 @@
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
             document.querySelector('#countdown span').textContent = 
-                `Bạn đã sống được ${days} ngày, ${hours} giờ, ${minutes} phút, ${seconds} giây`;
+                `${days} ngày, ${hours} giờ, ${minutes} phút, ${seconds} giây`;
         }
 
         function updateCurrentDateTime() {
@@ -272,7 +461,7 @@
                 weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
             });
             const time = today.toLocaleTimeString('vi-VN');
-            document.getElementById('currentDateTime').textContent = `Hôm nay: ${date} | ${time}`;
+            document.getElementById('currentDateTime').textContent = `${date} | ${time}`;
         }
 
         function loadVietnamEvents() {
@@ -291,12 +480,11 @@
 
             const todayEvent = events.find(event => event.date === todayDate);
             const li = document.createElement('li');
-            li.textContent = todayEvent ? todayEvent.name : "Hôm nay không có sự kiện đặc biệt.";
+            li.textContent = todayEvent ? todayEvent.name : "Không có sự kiện hôm nay.";
             if (todayEvent) li.classList.add('today-event');
             eventsList.appendChild(li);
         }
 
-        // Điều khiển âm thanh
         const audio = document.getElementById('backgroundMusic');
         const soundToggle = document.getElementById('soundToggle');
         let isPlaying = false;
@@ -312,26 +500,20 @@
             isPlaying = !isPlaying;
         });
 
-        setInterval(() => {
+        // Cập nhật thời gian thực cho cả đồng hồ và đếm ngày
+        function updateAll() {
             today = new Date();
+            setClock();
             calculateTime();
             updateCurrentDateTime();
             loadVietnamEvents();
-        }, 1000);
+        }
 
-        calculateTime();
-        updateCurrentDateTime();
-        loadVietnamEvents();
+        // Gọi lần đầu
+        updateAll();
+
+        // Cập nhật mỗi giây
+        setInterval(updateAll, 1000);
     </script>
-     <a href="mk.html" class="back-to-home">Quay về Trang Chủ</a>
-
-     <!-- JavaScript (tùy chọn) -->
-     <script>
-         // Thêm hiệu ứng click (nếu muốn)
-         document.querySelector('.back-to-home').addEventListener('click', function(e) {
-             e.preventDefault(); // Ngăn hành vi mặc định (tùy chọn)
-             window.location.href = 'mk.html'; //huyển hướng về trang chủ
-         });
-     </script>
 </body>
 </html>
