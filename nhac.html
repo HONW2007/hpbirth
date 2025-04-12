@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trình Phát Nhạc Một Bài</title>
+    <link rel="stylesheet" href="nhac.css">
+</head>
+<body>
+    <div class="album">
+        <h2>Nợ bạn</h2>
+        <div class="disk" id="disk"></div>
+        <div class="progress-container">
+            <span id="currentTime">0:00</span>
+            <input type="range" id="progressBar" min="0" value="0" step="1">
+            <span id="duration">0:00</span>
+        </div>
+        <audio id="audio"></audio>
+        <div class="controls">
+            <button id="repeatBtn" title="Lặp lại">🔁</button>
+            <button id="playBtn" title="Phát/Tạm dừng">▶️</button>
+        </div>
+    </div>
+    <div class="content">
+        <h3>Nghe nha</h3>
+        <p>
+          Đừng hỏi gì hết nha, biết vậy thôi nha !
+        </p>
+    </div>
+    <script src="nhac.js"></script>
+</body>
+</html>
