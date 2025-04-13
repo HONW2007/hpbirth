@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trình Phát Nhạc Một Bài</title>
+    <title>Album Nhạc Nâng Cao</title>
     <link rel="stylesheet" href="nhac.css">
 </head>
 <body>
     <div class="album">
-        <h2>Nợ bạn</h2>
+        <h2>Album Nhạc Yêu Thích</h2>
         <div class="disk" id="disk"></div>
         <div class="progress-container">
             <span id="currentTime">0:00</span>
@@ -18,14 +18,11 @@
         <audio id="audio"></audio>
         <div class="controls">
             <button id="repeatBtn" title="Lặp lại">🔁</button>
+            <button id="prevBtn" title="Bài trước">⏮️</button>
             <button id="playBtn" title="Phát/Tạm dừng">▶️</button>
+            <button id="nextBtn" title="Bài sau">⏭️</button>
+            <button id="backBtn" title="Trở về">Trở về</button> <!-- Nút mới -->
         </div>
-    </div>
-    <div class="content">
-        <h3>Nghe nha</h3>
-        <p>
-          Đừng hỏi gì hết nha, biết vậy thôi nha !
-        </p>
     </div>
     <script src="nhac.js"></script>
 </body>
