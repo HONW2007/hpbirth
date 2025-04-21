@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auto Animated Cute Face</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #fce2e6, #d9e7ff);
+      margin: 0;
+      font-family: 'Comic Sans MS', Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .face-container {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      background: #fff0cc;
+      border-radius: 50%;
+      border: 3px solid #ffcc99;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      animation: gentleBob 2s ease-in-out infinite;
+    }
+
+    .eye {
+      position: absolute;
+      width: 35px;
+      height: 35px;
+      background: #fff;
+      border-radius: 50%;
+      border: 2px solid #333;
+      top: 60px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .eye-left { left: 45px; }
+    .eye-right { right: 45px; }
+
+    .pupil {
+      width: 12px;
+      height: 12px;
+      background: #333;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.8;
+      top: 10px;
+      left: 10px;
+    }
+
+    .eyebrow {
+      position: absolute;
+      width: 30px;
+      height: 8px;
+      background: #333;
+      border-radius: 10px;
+      top: 40px;
+      transition: all 0.3s ease;
+    }
+
+    .eyebrow-left { left: 45px; }
+    .eyebrow-right { right: 45px; }
+
+    .mouth {
+      position: absolute;
+      bottom: 50px;
+      width: 50px;
+      height: 25px;
+      background: #ff9999;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .cheek {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 150, 150, 0.6);
+      border-radius: 50%;
+      top: 100px;
+      transition: all 0.3s ease;
+    }
+
+    .cheek-left { left: 30px; }
+    .cheek-right { right: 30px; }
+
+    @keyframes gentleBob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @keyframes blink {
+      0%, 90% { transform: scaleY(1); }
+      95% { transform: scaleY(0.2); }
+      100% { transform: scaleY(1); }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    @keyframes surpriseShake {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(-5deg); }
+      75% { transform: rotate(5deg); }
+      100% { transform: rotate(0deg); }
+    }
+    .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-to-home:hover {
+            background-color: #45a049;
+            cursor: pointer;
+        }
+  </style>
+</head>
+<body>
+  <div class="face-container" id="face">
+    <div class="eye eye-left"><div class="pupil"></div><div class="sparkle"></div></div>
+    <div class="eye eye-right"><div class="pupil"></div><div class="sparkle"></div></div>
+    <div class="eyebrow eyebrow-left"></div>
+    <div class="eyebrow eyebrow-right"></div>
+    <div class="mouth"></div>
+    <div class="cheek cheek-left"></div>
+    <div class="cheek cheek-right"></div>
+  </div>
+  <a href="mk.html" class="back-to-home">Quay về Trang Chủ</a>
+  <script>
+    const face = document.getElementById('face');
+    const eyes = document.querySelectorAll('.eye');
+    const pupils = document.querySelectorAll('.pupil');
+    const eyebrows = document.querySelectorAll('.eyebrow');
+    const cheeks = document.querySelectorAll('.cheek');
+    const mouth = document.querySelector('.mouth');
+
+    const mouthShapes = [
+      { borderRadius: '50px', width: '50px', height: '20px', background: '#ff6666' },
+      { borderRadius: '50px 50px 0 0', width: '50px', height: '30px', background: '#9999cc' },
+      { borderRadius: '50%', width: '40px', height: '40px', background: '#ffcc66' },
+      { borderRadius: '10px', width: '60px', height: '15px', background: '#ff99cc' },
+      { borderRadius: '0 0 50px 50px', width: '50px', height: '25px', background: '#66cccc' },
+      { borderRadius: '0 0 30px 30px', width: '50px', height: '20px', background: '#ffb347' },
+      { borderRadius: '50px', width: '60px', height: '15px', background: '#ff4d4d' },
+      { borderRadius: '0', width: '50px', height: '10px', background: '#333' }
+    ];
+
+    const eyeStyles = [
+      { width: '35px', height: '35px', transform: 'none', animation: 'blink 2s infinite' },
+      { width: '45px', height: '45px', transform: 'rotate(20deg)', animation: 'none' },
+      { width: '30px', height: '20px', transform: 'scaleY(0.7)', animation: 'blink 1.5s infinite' },
+      { width: '40px', height: '40px', transform: 'none', animation: 'none' },
+      { width: '30px', height: '30px', transform: 'scaleX(1.2)', animation: 'none' },
+      { width: '35px', height: '15px', transform: 'scaleY(0.5)', animation: 'blink 3s infinite' }
+    ];
+
+    const eyebrowsStyles = [
+      { transform: 'rotate(10deg) translateY(-5px)' },
+      { transform: 'rotate(30deg) translateY(5px)' },
+      { transform: 'translateY(-10px)' },
+      { transform: 'rotate(-20deg) translateY(0)' },
+      { transform: 'rotate(15deg) translateY(-3px)' },
+      { transform: 'rotate(0deg) translateY(0)' },
+      { transform: 'rotate(-15deg) translateY(8px)' }
+    ];
+
+    const cheekStyles = [
+      { background: 'rgba(255, 100, 100, 0.8)', transform: 'scale(1)' },
+      { background: 'rgba(255, 150, 150, 0.6)', transform: 'scale(1.5)' },
+      { background: 'rgba(255, 120, 120, 0.4)', transform: 'scale(1)' },
+      { background: 'rgba(255, 180, 180, 0.7)', transform: 'scale(1)' },
+      { background: 'rgba(255, 100, 100, 0.5)', transform: 'scale(1.2)' }
+    ];
+
+    function randomizeEmotion() {
+      const mouthShape = mouthShapes[Math.floor(Math.random() * mouthShapes.length)];
+      const eyeStyle = eyeStyles[Math.floor(Math.random() * eyeStyles.length)];
+      const eyebrowStyle = eyebrowsStyles[Math.floor(Math.random() * eyebrowsStyles.length)];
+      const cheekStyle = cheekStyles[Math.floor(Math.random() * cheekStyles.length)];
+
+      Object.assign(mouth.style, mouthShape);
+
+      eyes.forEach(eye => {
+        Object.assign(eye.style, eyeStyle);
+        eye.style.animation = eyeStyle.animation;
+      });
+
+      eyebrows.forEach((eyebrow, i) => {
+        eyebrow.style.transform = i === 0
+          ? eyebrowStyle.transform
+          : eyebrowStyle.transform.replace('rotate(', 'rotate(-');
+      });
+
+      cheeks.forEach(cheek => Object.assign(cheek.style, cheekStyle));
+
+      pupils.forEach(pupil => {
+        const x = (Math.random() - 0.5) * 5;
+        const y = (Math.random() - 0.5) * 5;
+        pupil.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
+      });
+
+      if (Math.random() < 0.1) {
+        face.style.animation = 'surpriseShake 0.4s';
+        setTimeout(() => {
+          face.style.animation = 'gentleBob 2s ease-in-out infinite';
+        }, 500);
+      }
+    }
+
+    setInterval(randomizeEmotion, 1000);
+
+    document.querySelectorAll('.sparkle').forEach(sparkle => {
+      sparkle.style.animation = `sparkle ${1 + Math.random()}s infinite`;
+    });
+
+    randomizeEmotion();
+  </script>
+</body>
+</html>
